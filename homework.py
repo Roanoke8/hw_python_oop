@@ -60,14 +60,13 @@ class Running(Training):
         print('RUN Cредняя скорость движения', self.speed)
 
         return super().get_mean_speed()
-        
+
     def get_spent_calories(self) -> float:
         # (18 * средняя_скорость – 20) * вес_спортсмена / M_IN_KM * время_тренировки_в_минутах
         coeff_calorie_1 = 18
         coeff_calorie_2 = 20
         speed = self.get_mean_speed()
-        h_to_m = self.duration * 60 # Переводит в минуты
-        
+        h_to_m = self.duration * 60 # Переводит в минуты   
         callories = (coeff_calorie_1 * speed - coeff_calorie_2) * \
             self.weight / self.M_IN_KM * h_to_m
         print('Каллории', callories)
@@ -117,8 +116,7 @@ def main(training: Training) -> None:
 if __name__ == '__main__':
     packages = [
         ('SWM', [720, 1, 80, 25, 40]),
-        # ('RUN', [15000, 1, 75]),
-        ('RUN', [9000, 1, 75]),
+        ('RUN', [15000, 1, 75]),
         ('WLK', [9000, 1, 75, 180]),
     ]
 
