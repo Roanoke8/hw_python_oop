@@ -26,7 +26,7 @@ class Training:
         """Получить дистанцию в км."""
         result = self.action * self.LEN_STEP / self.M_IN_KM
         return result
-        
+
     def get_mean_speed(self) -> float:
         """Получить среднюю скорость движения."""
         distance = self.get_distance()
@@ -60,7 +60,6 @@ class Running(Training):
         h_in_m = self.duration * 60
         callories = (coeff_calorie_1 * speed - coeff_calorie_2) * \
             self.weight / self.M_IN_KM * h_in_m
-        print('Каллории', callories)
         return callories
 
 
@@ -90,14 +89,25 @@ class SportsWalking(Training):
 
 class Swimming(Training):
     """Тренировка: плавание."""
+    LEN_STEP = 1.38
+
+    def __init__(self, action: int, duration: float, weight: float, length_pool: float, count_pool: float) -> None:
+        super().__init__(action, duration, weight)
+        self.length_pool = length_pool
+        self.count_pool = count_pool
+
     def get_distance(self) -> float:
         return super().get_distance()
 
     def get_mean_speed(self) -> float:
-        return super().get_mean_speed()
-        
+        result = self.length_pool * self.count_pool / self.M_IN_KM / self.duration
+        return result
+    
     def get_spent_calories(self) -> float:
-        return super().get_spent_calories()
+        # (средняя_скорость + 1.1) * 2 * вес
+        mean_speed = self.get_mean_speed()
+        result = (mean_speed + 1.1) * 2 * self.weight
+        return result
 
     pass
 
@@ -116,6 +126,12 @@ def read_package(workout_type: str, data: list) -> Training:
         wlk.get_mean_speed()
         wlk.get_spent_calories()
         return wlk
+    elif workout_type == 'SWM':
+        swm = Swimming(data[0], data[1], data[2], data[3], data[4])
+        swm.get_distance()
+        swm.get_mean_speed()
+        swm.get_spent_calories()
+        return swm
 
 
 def main(training: Training) -> None:
