@@ -144,23 +144,14 @@ def read_package(workout_type: str, data: list) -> Training:
     """Прочитать данные полученные от датчиков."""
     if workout_type == 'RUN':
         run = Running(data[0], data[1], data[2])
-        # run.get_distance()
-        # run.get_mean_speed()
-        # run.get_spent_calories()
         run.show_training_info()
         return run
     elif workout_type == 'WLK':
         wlk = SportsWalking(data[0], data[1], data[2], data[3])
-        # wlk.get_distance()
-        # wlk.get_mean_speed()
-        # wlk.get_spent_calories()
         wlk.show_training_info()
         return wlk
     elif workout_type == 'SWM':
         swm = Swimming(data[0], data[1], data[2], data[3], data[4])
-        # swm.get_distance()
-        # swm.get_mean_speed()
-        # swm.get_spent_calories()
         swm.show_training_info()
         return swm
 
