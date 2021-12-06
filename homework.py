@@ -97,6 +97,10 @@ class Running(Training):
 
 class SportsWalking(Training):
     """Тренировка: спортивная ходьба."""
+    MIN: int = 60
+    COEFF_CALORIE_1: float = 0.035
+    COEFF_CALORIE_2: float = 0.029
+
     def __init__(self,
                  action: int,
                  duration: float,
@@ -112,12 +116,11 @@ class SportsWalking(Training):
         return super().get_mean_speed()
 
     def get_spent_calories(self) -> float:
-        speed = self.get_mean_speed()
-        h_in_m = self.duration * 60
-        weight = self.weight
-        height = self.height
-        callories: float = (0.035 * weight + (speed ** 2
-                            // height) * 0.029 * weight) * h_in_m
+        h_in_m = self.duration * self.MIN
+        coeff_weight = self.COEFF_CALORIE_1 * self.weight
+        coeff_speed = self.get_mean_speed() ** 2 // self.height
+        callories: float = (coeff_weight + coeff_speed * self.COEFF_CALORIE_2
+                            * self.weight) * h_in_m
         return callories
 
     def show_training_info(self) -> InfoMessage:
