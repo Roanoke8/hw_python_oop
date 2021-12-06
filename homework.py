@@ -181,7 +181,6 @@ def main(training: Training) -> None:
     """Главная функция."""
     info = training.show_training_info()
     print(info.get_message())
-    pass
 
 
 if __name__ == '__main__':
