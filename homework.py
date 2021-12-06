@@ -126,8 +126,6 @@ class SportsWalking(Training):
     def show_training_info(self) -> InfoMessage:
         return super().show_training_info()
 
-    pass
-
 
 class Swimming(Training):
     """Тренировка: плавание."""
@@ -158,8 +156,6 @@ class Swimming(Training):
 
     def show_training_info(self) -> InfoMessage:
         return super().show_training_info()
-
-    pass
 
 
 def read_package(workout_type: str, data: list) -> Training:
