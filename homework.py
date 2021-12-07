@@ -63,6 +63,7 @@ class Training:
 
 class Running(Training):
     """Тренировка: бег."""
+    MIN: int = 60 
     COEFF_CALORIE_1: int = 18
     COEFF_CALORIE_2: int = 20
 
@@ -79,7 +80,7 @@ class Running(Training):
         return super().get_mean_speed()
 
     def get_spent_calories(self) -> float:
-        h_in_m = self.duration * 60
+        h_in_m = self.duration * self.MIN
         coeff = (self.COEFF_CALORIE_1
                  * self.get_mean_speed() - self.COEFF_CALORIE_2)
         callories = (coeff * self.weight / self.M_IN_KM * h_in_m)
