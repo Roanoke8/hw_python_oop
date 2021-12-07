@@ -29,9 +29,6 @@ class Training:
     """Базовый класс тренировки."""
     LEN_STEP = 0.65
     M_IN_KM = 1000
-    dst: float = 0
-    spd: float = 0
-    inf: Dict[str, float] = {}
 
     def __init__(self,
                  action: int,
