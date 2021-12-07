@@ -63,7 +63,7 @@ class Training:
 
 class Running(Training):
     """Тренировка: бег."""
-    MIN: int = 60 
+    MIN: int = 60
     COEFF_CALORIE_1: int = 18
     COEFF_CALORIE_2: int = 20
 
