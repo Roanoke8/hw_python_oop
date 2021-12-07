@@ -94,6 +94,7 @@ class SportsWalking(Training):
     MIN: int = 60
     COEFF_CALORIE_1: float = 0.035
     COEFF_CALORIE_2: float = 0.029
+    COEFF_CALORIE_3: int = 2
 
     def __init__(self,
                  action: int,
@@ -112,7 +113,8 @@ class SportsWalking(Training):
     def get_spent_calories(self) -> float:
         h_in_m = self.duration * self.MIN
         coeff_weight = self.COEFF_CALORIE_1 * self.weight
-        coeff_speed = self.get_mean_speed() ** 2 // self.height
+        coeff_speed = (self.get_mean_speed() ** self.COEFF_CALORIE_3
+                       // self.height)
         callories: float = (coeff_weight + coeff_speed * self.COEFF_CALORIE_2
                             * self.weight) * h_in_m
         return callories
